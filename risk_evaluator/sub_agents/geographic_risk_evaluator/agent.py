@@ -1,6 +1,6 @@
-from google.adk.agents.llm_agent import Agent
-from tools import get_zone, get_risk_evaluation_by_zone
-from shared_libraries.types import RiskEvaluation
+from google.adk.agents import Agent
+from .tools import get_zone, get_risk_evaluation_by_zone
+from ...shared_libraries.types import RiskEvaluation
 
 geographic_risk_evaluator = Agent(
     name="geographic_risk_evaluator",

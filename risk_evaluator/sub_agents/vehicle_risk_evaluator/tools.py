@@ -1,4 +1,4 @@
-from shared_libraries.types import RiskEvaluation, RiskScore
+from ...shared_libraries.types import RiskEvaluation, RiskScore
 
 
 def get_brand_risk_category(brand: str) -> dict:

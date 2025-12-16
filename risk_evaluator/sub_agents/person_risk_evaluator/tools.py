@@ -1,4 +1,4 @@
-from shared_libraries.types import RiskEvaluation, RiskScore
+from ...shared_libraries.types import RiskEvaluation, RiskScore
 
 
 def check_judicial_record(fiscal_code: str) -> dict:

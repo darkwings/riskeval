@@ -1,6 +1,6 @@
-from google.adk.agents.llm_agent import Agent
-from tools import get_brand_risk_category, get_risk_evaluation_by_brand
-from shared_libraries.types import RiskEvaluation
+from google.adk.agents import Agent
+from .tools import get_brand_risk_category, get_risk_evaluation_by_brand
+from ...shared_libraries.types import RiskEvaluation
 
 vehicle_risk_evaluator = Agent(
     name="vehicle_risk_evaluator",

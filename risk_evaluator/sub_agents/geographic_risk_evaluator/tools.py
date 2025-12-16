@@ -1,4 +1,4 @@
-from shared_libraries import RiskEvaluation
+from ...shared_libraries.types import RiskEvaluation
 
 # This should be a call that discriminates zone by tariff
 def get_zone(city: str, tariff_id: str) -> dict:

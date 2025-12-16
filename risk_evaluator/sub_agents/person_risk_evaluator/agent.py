@@ -1,6 +1,6 @@
-from google.adk.agents.llm_agent import Agent
-from tools import check_judicial_record, get_risk_evaluation_by_judicial_record, validate_fiscal_code
-from shared_libraries.types import RiskEvaluation
+from google.adk.agents import Agent
+from .tools import check_judicial_record, get_risk_evaluation_by_judicial_record, validate_fiscal_code
+from ...shared_libraries.types import RiskEvaluation
 
 person_risk_evaluator = Agent(
     name="person_risk_evaluator",
