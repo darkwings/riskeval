@@ -40,6 +40,87 @@ pip install -r requirements.txt
 
 ## Running the Agent
 
+### Using FastAPI REST API (Recommended)
+
+Start the API server:
+
+```shell
+python api.py
+```
+
+Or with uvicorn:
+
+```shell
+uvicorn api:app --reload
+```
+
+The API will be available at [http://localhost:8000](http://localhost:8000)
+
+View interactive API documentation at [http://localhost:8000/docs](http://localhost:8000/docs)
+
+#### API Endpoints
+
+**POST /evaluate** - Complete risk evaluation with all sub-agent details
+
+```bash
+curl -X POST "http://localhost:8000/evaluate" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "city": "Milano",
+    "tariff_id": "TARIFF_001",
+    "vehicle_brand": "Ferrari",
+    "fiscal_code": "RSSMRA80A01H501U"
+  }'
+```
+
+Response:
+
+```json
+{
+  "geographic_risk": {
+    "score": "HIGH",
+    "evaluation": "Milano is classified as Zone 1..."
+  },
+  "vehicle_risk": {
+    "score": "VERY_HIGH",
+    "evaluation": "Ferrari is a luxury exotic brand..."
+  },
+  "person_risk": {
+    "score": "HIGH",
+    "evaluation": "Judicial records show serious violations..."
+  },
+  "global_risk": {
+    "score": "VERY_HIGH",
+    "evaluation": "Combined assessment indicates very high risk..."
+  },
+  "request": {
+    "city": "Milano",
+    "tariff_id": "TARIFF_001",
+    "vehicle_brand": "Ferrari",
+    "fiscal_code": "RSSMRA80A01H501U"
+  }
+}
+```
+
+**POST /evaluate/global-only** - Returns only the final global risk score
+
+```bash
+curl -X POST "http://localhost:8000/evaluate/global-only" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "city": "Pavia",
+    "tariff_id": "TARIFF_001",
+    "vehicle_brand": "Volkswagen",
+    "fiscal_code": "ABCDEF12G34H567I"
+  }'
+```
+
+**GET /health** - Health check endpoint
+
+```bash
+curl http://localhost:8000/health
+```
+
 ### Using ADK Web Interface
 
 Start the web interface:
@@ -48,10 +129,19 @@ Start the web interface:
 adk web
 ```
 
+Then test with this structured message:
 
-### Programmatic Usage (API Integration)
+```shell
+Evaluate risk for:
+- City: Milano
+- Tariff ID: TARIFF_001
+- Vehicle brand: Ferrari
+- Fiscal code: RSSMRA80A01H501U
+```
 
-For API integration, use structured input:
+### Programmatic Usage (Python)
+
+For direct Python integration, use structured input:
 
 ```python
 from risk_evaluator.shared_libraries.types import PolicyRequest
@@ -65,7 +155,7 @@ policy_request = PolicyRequest(
 )
 ```
 
-See `example_usage.py` for a complete example.
+See [example_usage.py](example_usage.py) for a complete example.
 
 ## Input Schema
 
