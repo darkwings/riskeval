@@ -1,10 +1,11 @@
 from google.adk.agents import Agent
+from google.adk.models.lite_llm import LiteLlm
 from .tools import get_zone, get_risk_evaluation_by_zone
 from ...shared_libraries.types import RiskEvaluation
 
 geographic_risk_evaluator = Agent(
     name="geographic_risk_evaluator",
-    model="gemini-2.5-flash",
+    model=LiteLlm(model='anthropic/claude-sonnet-4-20250514'),
     description="Evaluates the risk of a buyer based on geographic data",
     instruction="""
     You are an expert insurance underwriter specializing in geographic risk assessment

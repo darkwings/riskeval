@@ -1,10 +1,11 @@
 from google.adk.agents import Agent
+from google.adk.models.lite_llm import LiteLlm
 from .tools import check_judicial_record, get_risk_evaluation_by_judicial_record, validate_fiscal_code
 from ...shared_libraries.types import RiskEvaluation
 
 person_risk_evaluator = Agent(
     name="person_risk_evaluator",
-    model="gemini-2.5-flash",
+    model=LiteLlm(model='anthropic/claude-sonnet-4-20250514'),
     description="Evaluates the risk of a policy based on the policy holder's judicial record",
     instruction="""
     You are an expert in evaluating the risk of a policy emission based on the judicial

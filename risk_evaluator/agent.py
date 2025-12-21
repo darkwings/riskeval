@@ -1,4 +1,5 @@
 from google.adk.agents import Agent, ParallelAgent, SequentialAgent
+from google.adk.models.lite_llm import LiteLlm
 from .sub_agents.geographic_risk_evaluator.agent import geographic_risk_evaluator
 from .sub_agents.vehicle_risk_evaluator.agent import vehicle_risk_evaluator
 from .sub_agents.person_risk_evaluator.agent import person_risk_evaluator
@@ -11,7 +12,7 @@ evaluators = ParallelAgent(
 )
 
 global_evaluator = Agent(
-    model='gemini-2.5-flash',
+    model=LiteLlm(model='anthropic/claude-sonnet-4-20250514'),
     name='global_evaluator',
     description="Final evaluators agent that combines all risk assessments",
     instruction="""

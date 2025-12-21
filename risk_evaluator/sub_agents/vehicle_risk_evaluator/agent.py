@@ -1,10 +1,11 @@
 from google.adk.agents import Agent
+from google.adk.models.lite_llm import LiteLlm
 from .tools import get_brand_risk_category, get_risk_evaluation_by_brand
 from ...shared_libraries.types import RiskEvaluation
 
 vehicle_risk_evaluator = Agent(
     name="vehicle_risk_evaluator",
-    model="gemini-2.5-flash",
+    model=LiteLlm(model='anthropic/claude-sonnet-4-20250514'),
     description="Evaluates the risk of a policy based on the insured vehicle brand",
     instruction="""
     You are an expert in evaluating the risk of a policy emission based on the brand
