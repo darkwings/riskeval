@@ -48,15 +48,6 @@ Start the web interface:
 adk web
 ```
 
-Then test with this structured message:
-
-```
-Evaluate risk for:
-- City: Milano
-- Tariff ID: TARIFF_001
-- Vehicle brand: Ferrari
-- Fiscal code: RSSMRA80A01H501U
-```
 
 ### Programmatic Usage (API Integration)
 
