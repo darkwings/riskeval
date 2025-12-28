@@ -4,6 +4,7 @@ from .sub_agents.geographic_risk_evaluator.agent import geographic_risk_evaluato
 from .sub_agents.vehicle_risk_evaluator.agent import vehicle_risk_evaluator
 from .sub_agents.person_risk_evaluator.agent import person_risk_evaluator
 from .shared_libraries.types import RiskEvaluation
+from .shared_libraries.callbacks import rate_limit_callback
 
 evaluators = ParallelAgent(
     name='parallel_agent',
@@ -53,7 +54,8 @@ global_evaluator = Agent(
     - evaluation: A detailed explanation of your decision, referencing all three risk dimensions
     """,
     output_key="global_risk",
-    output_schema=RiskEvaluation
+    output_schema=RiskEvaluation,
+    before_model_callback=rate_limit_callback
 )
 
 workflow_agent = SequentialAgent(

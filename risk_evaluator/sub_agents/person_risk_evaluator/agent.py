@@ -2,6 +2,7 @@ from google.adk.agents import Agent
 from google.adk.models.lite_llm import LiteLlm
 from .tools import check_judicial_record, get_risk_evaluation_by_judicial_record, validate_fiscal_code
 from ...shared_libraries.types import RiskEvaluation
+from ...shared_libraries.callbacks import rate_limit_callback
 
 person_risk_evaluator = Agent(
     name="person_risk_evaluator",
@@ -47,5 +48,6 @@ person_risk_evaluator = Agent(
     """,
     tools=[validate_fiscal_code, check_judicial_record, get_risk_evaluation_by_judicial_record],
     output_key="person_risk",
-    output_schema=RiskEvaluation
+    output_schema=RiskEvaluation,
+    before_model_callback=rate_limit_callback
 )

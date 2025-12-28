@@ -2,6 +2,7 @@ from google.adk.agents import Agent
 from google.adk.models.lite_llm import LiteLlm
 from .tools import get_brand_risk_category, get_risk_evaluation_by_brand
 from ...shared_libraries.types import RiskEvaluation
+from ...shared_libraries.callbacks import rate_limit_callback
 
 vehicle_risk_evaluator = Agent(
     name="vehicle_risk_evaluator",
@@ -35,5 +36,6 @@ vehicle_risk_evaluator = Agent(
     """,
     tools=[get_brand_risk_category, get_risk_evaluation_by_brand],
     output_key="vehicle_risk",
-    output_schema=RiskEvaluation
+    output_schema=RiskEvaluation,
+    before_model_callback=rate_limit_callback
 )
